@@ -1,6 +1,6 @@
-# 🌟 Vue 3 Starter With Vite
+# 🌟 VueJS3 - UIKit
 
-This project built with Vue, TypeScript, and TailwindCSS.
+This project is used for learning VueJS 3 with Typescript and Tailwind CSS.
 
 ## Starter Introduction
 
@@ -97,70 +97,6 @@ pnpm test:unit
 
 ---
 
-## 📂 Folder Structure
-
-Project structure for this react starter
-
-```javascript
-
-.husky                                    // Husky configuration
-|   |_______commit-msg
-|   |_______pre-commit
-.vscode                                   // VSCode configuration
-|   |_______extensions.json
-public
-|   |_______favicon.ico
-src                                       // Entry point for the app.
-|   |_______app                           // Core of feature in the project.
-|   |   |_______assets                    // Contain all assets for the app.
-|   |   |_______components                // Global components for the app.
-|   |   |_______composables               // Contain all composable for the app.
-|   |   |_______constants                 // Contain all constants for the app.
-|   |   |_______helpers                   // Contain all helpers for the app.
-|   |   |_______router                    // Configuration for load all routes in the app.
-|   |   |_______store                     // Configuration for global store in the app.
-|   |_______modules                       // Contain all modules for the app.
-|   |   |_______authentication            // Authentication module.
-|   |   |   |_______components            // Contain all components for authentication module.
-|   |   |   |_______constants             // Contain all constants for authentication module.
-|   |   |   |_______interfaces            // Contain all interfaces for authentication module.
-|   |   |   |_______services              // Contain all services for authentication module. Please use this folder to store all business logic.
-|   |   |   |_______store                 // Configuration for store in authentication module.
-|   |   |   |_______views                 // Contain all views for authentication module.
-|   |   |_______{module-name}             // Example module.
-|   |_______plugins                       // Contain all plugins for the app.
-|   |   |_______axios                     // Axios plugin for the app.
-|   |   |_______mitt                      // Mitt plugin for the app.
-|   App.vue                               // Entry point for the app.
-|   interfaces.d.ts                       // Global interfaces for the app.
-|   main.ts                               // Bootstrap file for the app.
-|   meta.d.ts                             // Global meta for the app.
-|   style.css                             // Global style for the app.
-|   vite-env.d.ts                         // Vite environment file for the app.
-test
-|   |_______unit                          // Unit test for the app.
-```
-
-### ⚒️ How to Contribute
-
-Want to contribute? Great!
-
-To fix a bug or enhance an existing module, follow these steps:
-
-- Fork the repo
-- Create a new branch (`git checkout -b improve-feature`)
-- Make the appropriate changes in the files
-- Add changes to reflect the changes made
-- Commit your changes (`git commit -am 'Improve feature'`)
-- Push to the branch (`git push origin improve-feature`)
-- Create a Pull Request
-
-### 📩 Bug / Feature Request
-
-If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/existhink/VueJS3-DDD-TS/issues/new) by including your search query and the expected result.
-
-If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/existhink/VueJS3-DDD-TS/issues/new). Please include sample queries and their corresponding results.
-
 ## 📜 Credits
 
 List your collaborators, if any, with links to their GitHub profiles.
@@ -170,11 +106,8 @@ I'd like to acknowledge my collaborators, who contributed to the success of this
 Furthermore, I utilized certain third-party assets that require attribution. Find the creators' links in this section.
 
 If I followed tutorials during development, I'd include the links to those as well.
+Then, here's the tutorial I followed: [Online Course Bootcamp Front-end Developer: Mastering Vue JS 3](https://buildwithangga.com/kelas/bootcamp-front-end-developer-mastering-vue-js-3?main_leads=searchresult)
 
 👦 Rafi Khoirulloh <br>
 Email: khoirulloh.rafi2@gmail.com <br>
 GitHub: @apiiyu
-
-👩 Dyah Eka Lestari <br>
-Email: dyahekalestari9@gmail.com <br>
-GitHub: @ekady
