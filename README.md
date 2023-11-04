@@ -58,7 +58,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 1. Clone the Repository
 
 ```bash
-git clone https://github.com/existhink/VueJS3-DDD-TS.git
+git clone https://github.com/Apiiyu/VueJS-UIKit.git
 ```
 
 2. Install dependencies using pnpm
