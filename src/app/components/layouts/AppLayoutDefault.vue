@@ -1,3 +1,6 @@
-<template>Default</template>
-
-<script setup lang="ts"></script>
+<template>
+  <section id="layout-default">
+    <AppBaseNavbar />
+    <RouterView />
+  </section>
+</template>
