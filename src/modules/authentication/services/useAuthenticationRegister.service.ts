@@ -14,12 +14,12 @@ import { computed, reactive } from 'vue';
 
 // Vue Router
 import { useRouter } from 'vue-router';
-import { IAuthenticationLoginPayload } from '../interfaces';
+import { IAuthenticationRegisterPayload } from '../interfaces';
 
 /**
  * @description Closure function that returns everything what we need into an object
  */
-export const useAuthenticationLoginService = () => {
+export const useAuthenticationRegisterService = () => {
   const { httpAbort_registerAbort, httpAbort_abortAllRequest } = useHttpAbort();
   const store = useAuthenticationStore(); // Instance of the store
   const router = useRouter(); // Instance of the router
@@ -28,7 +28,8 @@ export const useAuthenticationLoginService = () => {
    * @description Reactive data binding
    */
   const authentication_isLoading = store.authentication_isLoading;
-  const authentication_formData = reactive<IAuthenticationLoginPayload>({
+  const authentication_formData = reactive<IAuthenticationRegisterPayload>({
+    name: '',
     email: '',
     password: '',
   });
@@ -37,6 +38,7 @@ export const useAuthenticationLoginService = () => {
    * @description Form validations
    */
   const authentication_formRules = computed(() => ({
+    name: { required },
     email: { required },
     password: { required },
   }));
@@ -45,14 +47,14 @@ export const useAuthenticationLoginService = () => {
   });
 
   /**
-   * @description Handle fetch api authentication login. We call the fetchAuthenticationLogin function from the store to handle the request.
+   * @description Handle fetch api authentication register. We call the fetchAuthenticationRegister function from the store to handle the request.
    */
-  const authentication_fetchAuthenticationLogin = async () => {
+  const authentication_fetchAuthenticationRegister = async () => {
     try {
-      const result = await store.fetchAuthentication_login(authentication_formData, {
+      const result = await store.fetchAuthentication_register(authentication_formData, {
         ...httpAbort_registerAbort(AUTHENTICATION_LOGIN_REQUEST),
       });
-      router.push({ name: 'dashboard' });
+      router.push({ name: 'login' });
 
       return Promise.resolve(result);
     } catch (error) {
@@ -68,7 +70,7 @@ export const useAuthenticationLoginService = () => {
     if (authentication_formValidations.value.$invalid) return;
 
     try {
-      await authentication_fetchAuthenticationLogin();
+      await authentication_fetchAuthenticationRegister();
     } catch (error) {
       Promise.reject(error);
     }

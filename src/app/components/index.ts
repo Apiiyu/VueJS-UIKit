@@ -1,13 +1,13 @@
 import type { App } from 'vue';
 
 // Components
-import { AppBaseFormGroup, AppBaseWrapper } from './base';
+import { AppBaseFormGroup, AppBaseNavbar, AppBaseWrapper } from './base';
 
 // Commons
 import { AppCommonEntryPoint, AppCommonNotFound, AppCommonUnauthorized } from './common';
 
 // Layouts
-import { AppLayoutDefault, AppLayoutEmpty } from './layouts';
+import { AppLayoutAuthentication, AppLayoutDefault, AppLayoutEmpty } from './layouts';
 
 /**
  * @description Register all components
@@ -20,6 +20,7 @@ export default (app: App): void => {
 
   // Base Components
   app.component('AppBaseFormGroup', AppBaseFormGroup);
+  app.component('AppBaseNavbar', AppBaseNavbar);
   app.component('AppBaseWrapper', AppBaseWrapper);
 
   // Common components
@@ -28,6 +29,7 @@ export default (app: App): void => {
   app.component('AppCommonUnauthorized', AppCommonUnauthorized);
 
   // Layout components
+  app.component('AppLayoutAuthentication', AppLayoutAuthentication);
   app.component('AppLayoutDefault', AppLayoutDefault);
   app.component('AppLayoutEmpty', AppLayoutEmpty);
 };

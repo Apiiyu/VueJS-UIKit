@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}', './node_modules/flowbite/**/*.js'],
   theme: {
     extend: {
       container: {
@@ -11,6 +11,9 @@ export default {
           xl: '5rem',
           '2xl': '6rem',
         },
+      },
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
       },
       fontSize: {
         sm: '0.8rem',
@@ -35,6 +38,7 @@ export default {
   },
   plugins: [
     // ...
+    require('flowbite/plugin'),
     require('@tailwindcss/forms'),
   ],
 };

@@ -17,7 +17,16 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../views/AuthenticationLoginUI.vue'),
         meta: {
           requiresAuthorization: false,
-          layout: LAYOUT_OPTIONS.EMPTY,
+          layout: LAYOUT_OPTIONS.AUTHENTICATION,
+        },
+      },
+      {
+        path: 'register',
+        name: 'authenticationRegister',
+        component: () => import('../views/AuthenticationRegisterUI.vue'),
+        meta: {
+          requiresAuthorization: false,
+          layout: LAYOUT_OPTIONS.AUTHENTICATION,
         },
       },
     ],

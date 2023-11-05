@@ -2,11 +2,16 @@ import { defineStore } from 'pinia';
 
 // Interfaces
 import { AxiosRequestConfig } from 'axios';
-import { IAuthenticationResponse, IAuthenticationStateStore } from '../interfaces';
+import {
+  IAuthenticationLoginPayload,
+  IAuthenticationRegisterPayload,
+  IAuthenticationResponse,
+  IAuthenticationStateStore,
+} from '../interfaces';
 
 // Plugins
 import httpClient from '@/plugins/axios';
-import { AUTHENTICATION_ENDPOINT_LOGIN } from '../constants';
+import { AUTHENTICATION_ENDPOINT_LOGIN, AUTHENTICATION_ENDPOINT_REGISTER } from '../constants';
 
 export const useAuthenticationStore = defineStore('authentication', {
   state: (): IAuthenticationStateStore => ({
@@ -27,7 +32,7 @@ export const useAuthenticationStore = defineStore('authentication', {
      * @access public
      */
     async fetchAuthentication_login(
-      payload: unknown,
+      payload: IAuthenticationLoginPayload,
       requestConfigurations: AxiosRequestConfig,
     ): Promise<IAuthenticationResponse> {
       this.authentication_isLoading = true;
@@ -36,6 +41,36 @@ export const useAuthenticationStore = defineStore('authentication', {
         const response = await httpClient.post<IAuthenticationResponse>(AUTHENTICATION_ENDPOINT_LOGIN, payload, {
           ...requestConfigurations,
         });
+        this.authentication_token = response.data.token;
+
+        return Promise.resolve(response.data);
+      } catch (error) {
+        return Promise.reject(error);
+      } finally {
+        this.authentication_isLoading = false;
+      }
+    },
+
+    /**
+     * @description Handle fetch api authentication login.
+     * @url /authentication/register
+     * @method POST
+     * @access public
+     */
+    async fetchAuthentication_register(
+      payload: IAuthenticationRegisterPayload,
+      requestConfigurations: AxiosRequestConfig,
+    ): Promise<IAuthenticationResponse> {
+      this.authentication_isLoading = true;
+
+      try {
+        const response = await httpClient.post<IAuthenticationResponse>(
+          AUTHENTICATION_ENDPOINT_REGISTER,
+          payload,
+          {
+            ...requestConfigurations,
+          },
+        );
         this.authentication_token = response.data.token;
 
         return Promise.resolve(response.data);
