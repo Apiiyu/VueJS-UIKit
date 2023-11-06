@@ -6,6 +6,7 @@
   "scripts": {
     "start:dev": "vite",
     "build": "vue-tsc && vite build",
+    "generate:module": "node module.js",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:ui": "vitest --ui",
