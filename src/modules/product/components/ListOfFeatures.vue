@@ -3,12 +3,25 @@
     <h1 class="mt-5 mb-3 font-semibold text-md">Great Features</h1>
 
     <div class="flex flex-col gap-3 mb-8">
-      <ProductFeature v-for="item in 4" :key="item" />
+      <AppBaseProductFeature
+        v-for="(feature, index) in productDetail_listOfFeatures"
+        :title="feature"
+        icon-position="right"
+        :key="index"
+      />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// Components
-import ProductFeature from './ProductFeature.vue';
+// Interfaces
+import { IProvideProductDetail } from '../interfaces';
+
+// Vue
+import { inject } from 'vue';
+
+/**
+ * @description Destructure all the data and methods what we need
+ */
+const { productDetail_listOfFeatures } = inject<IProvideProductDetail>('product_detail')!;
 </script>

@@ -11,4 +11,23 @@
 // Components
 import MainProductDetail from '../components/MainProductDetail.vue';
 import ProductInformation from '../components/ProductInformation.vue';
+
+// Services
+import { useProductDetailService } from '../services/useProductDetail.service';
+
+// Vue
+import { provide } from 'vue';
+
+/**
+ * @description Destructure all the data and methods what we need
+ */
+const { productDetail_listOfBenefits, productDetail_listOfFeatures } = useProductDetailService();
+
+/**
+ * @description Provide the data and methods to the child components
+ */
+provide('product_detail', {
+  productDetail_listOfBenefits,
+  productDetail_listOfFeatures,
+});
 </script>

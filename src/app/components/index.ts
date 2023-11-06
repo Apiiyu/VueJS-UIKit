@@ -1,7 +1,13 @@
 import type { App } from 'vue';
 
 // Components
-import { AppBaseFormGroup, AppBaseNavbar, AppBaseWrapper } from './base';
+import {
+  AppBaseFormGroup,
+  AppBaseNavbar,
+  AppBaseProductBenefits,
+  AppBaseProductFeature,
+  AppBaseWrapper,
+} from './base';
 
 // Commons
 import { AppCommonEntryPoint, AppCommonNotFound, AppCommonUnauthorized } from './common';
@@ -21,6 +27,8 @@ export default (app: App): void => {
   // Base Components
   app.component('AppBaseFormGroup', AppBaseFormGroup);
   app.component('AppBaseNavbar', AppBaseNavbar);
+  app.component('AppBaseProductBenefits', AppBaseProductBenefits);
+  app.component('AppBaseProductFeature', AppBaseProductFeature);
   app.component('AppBaseWrapper', AppBaseWrapper);
 
   // Common components

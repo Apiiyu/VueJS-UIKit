@@ -3,6 +3,7 @@ import { useHttpAbort } from '@/app/composables';
 
 // Constants
 import { AUTHENTICATION_LOGIN_REQUEST } from '../constants';
+import { PRODUCT_BENEFITS } from '@/modules/product/constants';
 
 // Store / Pinia
 import { useAuthenticationStore } from '../store';
@@ -82,5 +83,6 @@ export const useAuthenticationRegisterService = () => {
     authentication_formValidations,
     authentication_isLoading,
     authentication_onSubmit,
+    authentication_productBenefits: PRODUCT_BENEFITS,
   };
 };
