@@ -33,6 +33,7 @@ export const useAuthenticationRegisterService = () => {
     name: '',
     email: '',
     password: '',
+    title: 'Full-stack Developer',
   });
 
   /**

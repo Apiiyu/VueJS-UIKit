@@ -12,6 +12,15 @@ const routes: RouteRecordRaw[] = [
     component: AppBaseWrapper,
     children: [
       {
+        path: ':id/categories',
+        name: 'productCategories',
+        component: () => import('../views/ProductCategoriesUI.vue'),
+        meta: {
+          requiresAuthorization: false,
+          layout: LAYOUT_OPTIONS.DEFAULT,
+        },
+      },
+      {
         path: ':id/detail',
         name: 'productDetail',
         component: () => import('../views/ProductDetailUI.vue'),

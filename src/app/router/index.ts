@@ -16,7 +16,6 @@ const loadAllRoutes = async (): Promise<Router> => {
 
   for (const path in modules) {
     const module = await modules[path]();
-    console.log((module as { default: RouteRecordRaw[] }).default, 'module');
     routes.push(...(module as { default: RouteRecordRaw[] }).default);
   }
 

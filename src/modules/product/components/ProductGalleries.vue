@@ -1,48 +1,30 @@
 <template>
   <section id="product-galleries">
-    <img :src="'/src/app/assets/images/' + imagePrimary" alt="" class="w-full mt-6 rounded-2xl" />
+    <img :src="productDetail_imagePrimaryProduct" alt="" class="w-full mt-6 rounded-2xl" />
     <div class="grid grid-cols-4 gap-4 mt-4">
       <div
-        v-for="(gallery, index) in galleries"
+        v-for="(gallery, index) in productDetail_product.galleries"
         class="overflow-hidden cursor-pointer rounded-2xl"
-        :class="{ 'ring-2 ring-indigo-500': gallery.imageUri === imagePrimary }"
+        :class="{ 'ring-2 ring-indigo-500': gallery.url === productDetail_imagePrimaryProduct }"
         :key="index"
-        @click="onChangeImagePrimary(gallery.imageUri)"
+        @click="productDetail_onChangeImagePrimary(gallery.url)"
       >
-        <img :src="'/src/app/assets/images/' + gallery.imageUri" class="w-full h-full" alt="" />
+        <img :src="gallery.url" class="w-full h-full" alt="" />
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+// Interfaces
+import { IProvideProductDetail } from '../interfaces';
 
-const imagePrimary = ref('gallery-1.png');
-const galleries = ref([
-  {
-    id: 1,
-    isActive: true,
-    imageUri: 'gallery-1.png',
-  },
-  {
-    id: 2,
-    isActive: false,
-    imageUri: 'gallery-2.png',
-  },
-  {
-    id: 3,
-    isActive: false,
-    imageUri: 'gallery-3.png',
-  },
-  {
-    id: 4,
-    isActive: false,
-    imageUri: 'gallery-4.png',
-  },
-]);
+// Vue
+import { inject } from 'vue';
 
-const onChangeImagePrimary = (imageUri: string) => {
-  imagePrimary.value = imageUri;
-};
+/**
+ * @description Destructure all the data and methods what we need
+ */
+const { productDetail_imagePrimaryProduct, productDetail_onChangeImagePrimary, productDetail_product } =
+  inject<IProvideProductDetail>('product_detail')!;
 </script>

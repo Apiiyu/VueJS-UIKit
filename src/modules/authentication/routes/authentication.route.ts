@@ -13,7 +13,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: 'login',
-        name: 'authenticationLogin',
+        name: 'login',
         component: () => import('../views/AuthenticationLoginUI.vue'),
         meta: {
           requiresAuthorization: false,
@@ -22,7 +22,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'register',
-        name: 'authenticationRegister',
+        name: 'register',
         component: () => import('../views/AuthenticationRegisterUI.vue'),
         meta: {
           requiresAuthorization: false,

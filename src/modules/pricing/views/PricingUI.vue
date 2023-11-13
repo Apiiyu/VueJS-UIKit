@@ -27,13 +27,17 @@ import { provide } from 'vue';
 /**
  * @description Destructure all the data and methods what we need
  */
-const { pricing_listOfBenefits, pricing_listOfPlans } = usePricingService();
+const { pricing_isLoading, pricing_listOfBenefits, pricing_listOfPlans, pricing_onSubmit, pricing_userData } =
+  usePricingService();
 
 /**
  * @description Provide the data and methods to the child components
  */
 provide('pricing', {
+  pricing_isLoading,
   pricing_listOfBenefits,
   pricing_listOfPlans,
+  pricing_onSubmit,
+  pricing_userData,
 });
 </script>

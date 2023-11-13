@@ -1,3 +1,4 @@
+export const PRICING_CHECKOUT_REQUEST = 'PRICING_CHECKOUT_REQUEST';
 export const PRICING_PLANS = [
   {
     title: 'Basic Plan',

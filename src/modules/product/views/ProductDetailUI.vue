@@ -16,18 +16,37 @@ import ProductInformation from '../components/ProductInformation.vue';
 import { useProductDetailService } from '../services/useProductDetail.service';
 
 // Vue
-import { provide } from 'vue';
+import { onMounted, provide } from 'vue';
 
 /**
  * @description Destructure all the data and methods what we need
  */
-const { productDetail_listOfBenefits, productDetail_listOfFeatures } = useProductDetailService();
+const {
+  productDetail_fetchProductDetail,
+  productDetail_imagePrimaryProduct,
+  productDetail_listOfBenefits,
+  productDetail_listOfFeatures,
+  productDetail_onChangeImagePrimary,
+  productDetail_product,
+  productDetail_userData,
+} = useProductDetailService();
 
 /**
  * @description Provide the data and methods to the child components
  */
 provide('product_detail', {
+  productDetail_imagePrimaryProduct,
   productDetail_listOfBenefits,
   productDetail_listOfFeatures,
+  productDetail_onChangeImagePrimary,
+  productDetail_product,
+  productDetail_userData,
+});
+
+/**
+ * @description Lifecycle hook that is called after data-bound properties of a directive are initialized.
+ */
+onMounted(async () => {
+  await Promise.all([productDetail_fetchProductDetail()]);
 });
 </script>

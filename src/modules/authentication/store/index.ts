@@ -1,7 +1,14 @@
-import { defineStore } from 'pinia';
+// Axios
+import { AxiosRequestConfig } from 'axios';
+
+// Constants
+import {
+  AUTHENTICATION_ENDPOINT_LOGIN,
+  AUTHENTICATION_ENDPOINT_REGISTER,
+  AUTHENTICATION_ENDPOINT_USER,
+} from '../constants';
 
 // Interfaces
-import { AxiosRequestConfig } from 'axios';
 import {
   IAuthenticationLoginPayload,
   IAuthenticationRegisterPayload,
@@ -9,15 +16,18 @@ import {
   IAuthenticationStateStore,
 } from '../interfaces';
 
+// Pinia
+import { defineStore } from 'pinia';
+
 // Plugins
 import httpClient from '@/plugins/axios';
-import { AUTHENTICATION_ENDPOINT_LOGIN, AUTHENTICATION_ENDPOINT_REGISTER } from '../constants';
 
 export const useAuthenticationStore = defineStore('authentication', {
   state: (): IAuthenticationStateStore => ({
+    authentication_isAuthenticated: false,
     authentication_isLoading: false,
     authentication_token: '',
-    authentication_userData: null,
+    authentication_userData: null as unknown | {} as IResponseUserData,
   }),
   getters: {
     /**
@@ -27,7 +37,7 @@ export const useAuthenticationStore = defineStore('authentication', {
   actions: {
     /**
      * @description Handle fetch api authentication login.
-     * @url /authentication/login
+     * @url /login
      * @method POST
      * @access public
      */
@@ -41,7 +51,8 @@ export const useAuthenticationStore = defineStore('authentication', {
         const response = await httpClient.post<IAuthenticationResponse>(AUTHENTICATION_ENDPOINT_LOGIN, payload, {
           ...requestConfigurations,
         });
-        this.authentication_token = response.data.token;
+        this.authentication_isAuthenticated = true;
+        this.authentication_token = response.data.access_token;
 
         return Promise.resolve(response.data);
       } catch (error) {
@@ -53,7 +64,7 @@ export const useAuthenticationStore = defineStore('authentication', {
 
     /**
      * @description Handle fetch api authentication login.
-     * @url /authentication/register
+     * @url /register
      * @method POST
      * @access public
      */
@@ -71,9 +82,34 @@ export const useAuthenticationStore = defineStore('authentication', {
             ...requestConfigurations,
           },
         );
-        this.authentication_token = response.data.token;
+        this.authentication_token = response.data.access_token;
 
         return Promise.resolve(response.data);
+      } catch (error) {
+        return Promise.reject(error);
+      } finally {
+        this.authentication_isLoading = false;
+      }
+    },
+
+    /**
+     * @description Handle fetch api user profile.
+     * @url /user
+     * @method GET
+     * @access public
+     */
+    async fetchAuthentication_getUserProfile(
+      requestConfigurations: AxiosRequestConfig,
+    ): Promise<IResponseUserData> {
+      this.authentication_isLoading = true;
+
+      try {
+        const response = await httpClient.get<IResponseUserData>(AUTHENTICATION_ENDPOINT_USER, {
+          ...requestConfigurations,
+        });
+        this.authentication_userData = response.data;
+
+        return Promise.resolve<IResponseUserData>(response.data);
       } catch (error) {
         return Promise.reject(error);
       } finally {
@@ -83,7 +119,7 @@ export const useAuthenticationStore = defineStore('authentication', {
   },
   persist: {
     key: 'authentication',
-    paths: ['authentication_token'],
+    paths: ['authentication_isAuthenticated', 'authentication_token', 'authentication_userData'],
     storage: sessionStorage,
   },
 });

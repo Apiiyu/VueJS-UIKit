@@ -2,7 +2,10 @@
 import { useHttpAbort } from '@/app/composables';
 
 // Constants
-import { AUTHENTICATION_LOGIN_REQUEST } from '../constants';
+import { AUTHENTICATION_GET_USER_PROFILE_REQUEST, AUTHENTICATION_LOGIN_REQUEST } from '../constants';
+
+// Interfaces
+import { IAuthenticationLoginPayload, IAuthenticationResponse } from '../interfaces';
 
 // Store / Pinia
 import { useAuthenticationStore } from '../store';
@@ -14,7 +17,6 @@ import { computed, reactive } from 'vue';
 
 // Vue Router
 import { useRouter } from 'vue-router';
-import { IAuthenticationLoginPayload } from '../interfaces';
 
 /**
  * @description Closure function that returns everything what we need into an object
@@ -47,12 +49,27 @@ export const useAuthenticationLoginService = () => {
   /**
    * @description Handle fetch api authentication login. We call the fetchAuthenticationLogin function from the store to handle the request.
    */
-  const authentication_fetchAuthenticationLogin = async () => {
+  const authentication_fetchAuthenticationLogin = async (): Promise<IAuthenticationResponse> => {
     try {
       const result = await store.fetchAuthentication_login(authentication_formData, {
         ...httpAbort_registerAbort(AUTHENTICATION_LOGIN_REQUEST),
       });
       router.push({ name: 'dashboard' });
+
+      return Promise.resolve(result);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  };
+
+  /**
+   * @description Handle fetch api get user profile. We call the fetchAuthenticationLogin function from the store to handle the request.
+   */
+  const authentication_fetchGetUserProfile = async (): Promise<IResponseUserData> => {
+    try {
+      const result = await store.fetchAuthentication_getUserProfile({
+        ...httpAbort_registerAbort(AUTHENTICATION_GET_USER_PROFILE_REQUEST),
+      });
 
       return Promise.resolve(result);
     } catch (error) {
@@ -69,6 +86,7 @@ export const useAuthenticationLoginService = () => {
 
     try {
       await authentication_fetchAuthenticationLogin();
+      await authentication_fetchGetUserProfile();
     } catch (error) {
       Promise.reject(error);
     }

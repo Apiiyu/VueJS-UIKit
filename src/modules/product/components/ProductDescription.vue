@@ -2,19 +2,22 @@
   <section id="product-description">
     <h1 class="mt-8 mb-3 text-lg font-semibold">About</h1>
     <div class="text-gray-500">
-      <p class="pb-4">
-        Sportly App UI Kit will help your Sport, Fitness, and Workout App products or services. Came with modern
-        and sporty style, you can easily edit and customize all elements with components that can speed up your
-        design process.
-      </p>
-      <p class="pb-4">
-        Suitable for : <br />
-        - Sport App <br />
-        - Fitness & GYM App <br />
-        - Workout App <br />
-        - Trainer & Tracker App <br />
-        - And many more <br />
+      <p class="pb-4 whitespace-pre-line">
+        {{ productDetail_product.description }}
       </p>
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+// Interfaces
+import { IProvideProductDetail } from '../interfaces';
+
+// Vue
+import { inject } from 'vue';
+
+/**
+ * @description Destructure all the data and methods what we need
+ */
+const { productDetail_product } = inject<IProvideProductDetail>('product_detail')!;
+</script>

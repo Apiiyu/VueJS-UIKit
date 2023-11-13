@@ -34,8 +34,12 @@ import { provide } from 'vue';
 /**
  * @description Destructure all the data and methods what we need
  */
-const { authentication_formData, authentication_formValidations, authentication_onSubmit } =
-  useAuthenticationLoginService();
+const {
+  authentication_formData,
+  authentication_formValidations,
+  authentication_isLoading,
+  authentication_onSubmit,
+} = useAuthenticationLoginService();
 
 /**
  * @description Provide the data and methods to the child components
@@ -43,6 +47,7 @@ const { authentication_formData, authentication_formValidations, authentication_
 provide('authentication_login', {
   authentication_formData,
   authentication_formValidations,
+  authentication_isLoading,
   authentication_onSubmit,
 });
 </script>

@@ -4,7 +4,7 @@
 
     <div class="flex flex-col gap-3 mb-8">
       <AppBaseProductFeature
-        v-for="(feature, index) in productDetail_listOfFeatures"
+        v-for="(feature, index) in productDetail_product.features"
         :title="feature"
         icon-position="right"
         :key="index"
@@ -23,5 +23,5 @@ import { inject } from 'vue';
 /**
  * @description Destructure all the data and methods what we need
  */
-const { productDetail_listOfFeatures } = inject<IProvideProductDetail>('product_detail')!;
+const { productDetail_product } = inject<IProvideProductDetail>('product_detail')!;
 </script>

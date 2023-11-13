@@ -1,9 +1,9 @@
 <template>
   <section id="category-item" class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
     <div class="overflow-hidden border border-gray-200 rounded-xl">
-      <a href="details.html">
+      <a :href="`/product/${id}/categories`">
         <div class="m-4 overflow-hidden rounded-xl">
-          <img alt="Placeholder" class="block w-full h-auto" :src="'/src/app/assets/images/' + imageUri" />
+          <img alt="Placeholder" class="block w-full h-auto" :src="imageUri" />
         </div>
       </a>
 
@@ -25,6 +25,7 @@ import { IPropsCategoryItem } from '../interfaces';
  * @description Define props with default values and interfaces
  */
 withDefaults(defineProps<IPropsCategoryItem>(), {
+  id: 1,
   imageUri: '@/app/assets/images/categories-1.jpg',
   title: 'Mobile UI Kit',
   total: 731,

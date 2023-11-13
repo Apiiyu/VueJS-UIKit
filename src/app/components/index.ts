@@ -6,6 +6,8 @@ import {
   AppBaseNavbar,
   AppBaseProductBenefits,
   AppBaseProductFeature,
+  AppBaseProductUIItem,
+  AppBaseToast,
   AppBaseWrapper,
 } from './base';
 
@@ -29,6 +31,8 @@ export default (app: App): void => {
   app.component('AppBaseNavbar', AppBaseNavbar);
   app.component('AppBaseProductBenefits', AppBaseProductBenefits);
   app.component('AppBaseProductFeature', AppBaseProductFeature);
+  app.component('AppBaseProductUIItem', AppBaseProductUIItem);
+  app.component('AppBaseToast', AppBaseToast);
   app.component('AppBaseWrapper', AppBaseWrapper);
 
   // Common components

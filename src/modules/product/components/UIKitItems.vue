@@ -3,7 +3,7 @@
     <h2 class="mb-4 text-xl font-medium md:mb-0 md:text-lg">New Items</h2>
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
       <AppBaseProductUIItem
-        v-for="(product, index) in dashboard_listOfProducts"
+        v-for="(product, index) in product_listOfCategories?.products"
         :id="product?.id"
         :category="product?.category?.name"
         :image-uri="product?.thumbnails"
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 // Interfaces
-import { IProvideDashboard } from '../interfaces';
+import { IProvideProductCategories } from '../interfaces';
 
 // Vue
 import { inject } from 'vue';
@@ -24,5 +24,5 @@ import { inject } from 'vue';
 /**
  * @description Destructure all the data and methods what we need
  */
-const { dashboard_listOfProducts } = inject<IProvideDashboard>('dashboard')!;
+const { product_listOfCategories } = inject<IProvideProductCategories>('product_categories')!;
 </script>

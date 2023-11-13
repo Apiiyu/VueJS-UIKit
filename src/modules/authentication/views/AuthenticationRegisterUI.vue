@@ -45,6 +45,7 @@ import { provide } from 'vue';
 const {
   authentication_formData,
   authentication_formValidations,
+  authentication_isLoading,
   authentication_onSubmit,
   authentication_productBenefits,
 } = useAuthenticationRegisterService();
@@ -55,6 +56,7 @@ const {
 provide('authentication_register', {
   authentication_formData,
   authentication_formValidations,
+  authentication_isLoading,
   authentication_onSubmit,
 });
 </script>

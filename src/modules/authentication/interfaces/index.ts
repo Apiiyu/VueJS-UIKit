@@ -2,6 +2,7 @@ import { Validation, ValidationRuleWithParams } from '@vuelidate/core';
 import { Ref } from 'vue';
 
 export interface IAuthenticationStateStore {
+  authentication_isAuthenticated: boolean;
   authentication_isLoading: boolean;
   authentication_token: string;
   authentication_userData: unknown;
@@ -14,11 +15,12 @@ export interface IAuthenticationLoginPayload {
 
 export interface IAuthenticationRegisterPayload extends IAuthenticationLoginPayload {
   name: string;
+  title: string;
 }
 
 export interface IAuthenticationResponse {
-  token: string;
-  userData: unknown;
+  access_token: string;
+  user: IResponseUserData;
 }
 
 export interface IPropsAuthenticationForm {
@@ -29,6 +31,7 @@ export interface IPropsAuthenticationForm {
 }
 
 export interface IProvideAuthentication {
+  authentication_isLoading: boolean;
   authentication_formData: IAuthenticationLoginPayload | IAuthenticationRegisterPayload;
   authentication_formValidations: Ref<
     Validation<{
