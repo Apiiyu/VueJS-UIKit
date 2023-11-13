@@ -14,7 +14,7 @@
           type="text"
           name="name"
           :class="{ ...classes }"
-          v-model="authentication_formData.name"
+          v-model="(authentication_formData as IAuthenticationRegisterPayload).name"
           v-bind="{ ...useBindStateForm('Type your full name') }"
           v-on="useListenerForm(authentication_formValidations, 'name')"
         />
@@ -115,7 +115,7 @@ import { AppBaseFormGroup } from '@/app/components/base';
 import { useBindStateForm, useListenerForm } from '@/app/composables';
 
 // Interfaces
-import { IPropsAuthenticationForm, IProvideAuthentication } from '../interfaces';
+import { IAuthenticationRegisterPayload, IPropsAuthenticationForm, IProvideAuthentication } from '../interfaces';
 
 // Vue
 import { inject } from 'vue';
