@@ -14,4 +14,7 @@ export default defineConfig({
       '@constants': fileURLToPath(new URL('./src/app/constants', import.meta.url)),
     },
   },
+  server: {
+    port: 8003,
+  },
 });
